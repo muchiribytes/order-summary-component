@@ -84,3 +84,29 @@ a {
   place-items: center;
   inline-size: 100%;
 }
+
+/* 4. Card Component Base Layout */
+.card {
+  background-color: var(--color-white);
+  max-inline-size: 28.125rem;
+  inline-size: 100%;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.card__hero-img {
+  inline-size: 100%;
+  object-fit: cover;
+}
+
+.card__content {
+  padding: 2rem 1.5rem 2rem;
+  text-align: center;
+}
+
+@media (min-width: 30em) {
+  .card__content {
+    padding: 2.75rem 3rem 3rem;
+  }
+}
