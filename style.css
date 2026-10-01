@@ -67,6 +67,7 @@ a {
   align-items: center;
   justify-items: center;
   padding: 1.5rem 1.5rem 2rem;
+  background-color: var(--color-blue-100);
   background-image: url("./images/pattern-background-mobile.svg");
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -76,6 +77,8 @@ a {
 @media (min-width: 48em) {
   .page-body {
     background-image: url("./images/pattern-background-desktop.svg");
+    background-size: 100% 50vh; /* Scales wave pattern smoothly across wide viewports */
+    background-position: top left;
   }
 }
 
