@@ -110,3 +110,101 @@ a {
     padding: 2.75rem 3rem 3rem;
   }
 }
+
+/* 5. Plan Box Component and Active Hover States */
+.card__plan-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1rem;
+  background-color: var(--color-blue-50);
+  border-radius: var(--radius-inner);
+  margin-block-end: 1.5rem;
+}
+
+@media (min-width: 30em) {
+  .card__plan-box {
+    padding: 1.5rem;
+    margin-block-end: 2rem;
+  }
+}
+
+.card__plan-icon {
+  flex-shrink: 0;
+}
+
+.card__plan-details {
+  text-align: start;
+  margin-inline-end: auto;
+}
+
+.card__plan-name {
+  font-size: 0.875rem;
+  font-weight: var(--fw-black);
+  color: var(--color-blue-950);
+}
+
+.card__plan-price {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+}
+
+.card__plan-change-btn {
+  font-size: 0.8125rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-blue-700);
+  text-decoration: underline;
+  transition:
+    color 0.2s ease,
+    text-decoration 0.2s ease;
+}
+
+.card__plan-change-btn:hover,
+.card__plan-change-btn:focus-visible {
+  color: var(--color-blue-700-hover);
+  text-decoration: none;
+}
+
+/* 6. Action Buttons and Active States */
+.card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 30em) {
+  .card__actions {
+    gap: 1rem;
+  }
+}
+
+.btn {
+  inline-size: 100%;
+  padding-block: 0.9375rem;
+  border-radius: var(--radius-button);
+  font-size: 0.9375rem;
+  font-weight: var(--fw-black);
+  transition: all 0.2s ease;
+}
+
+.btn--primary {
+  background-color: var(--color-blue-700);
+  color: var(--color-white);
+  box-shadow: var(--shadow-button);
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background-color: var(--color-blue-700-hover);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  color: var(--color-gray-600);
+}
+
+.btn--secondary:hover,
+.btn--secondary:focus-visible {
+  color: var(--color-blue-950);
+}
