@@ -228,14 +228,19 @@ a {
   line-height: 1.6;
   color: var(--color-gray-600);
   margin-block-end: 1.5rem;
-  padding-inline: 0.25rem;
+  margin-inline: auto;
+
+  /* Mobile: forces line break after "of" and "on" */
+  max-inline-size: 16rem;
 }
 
 @media (min-width: 30em) {
   .card__description {
-    font-size: 1rem;
+    font-size: 0.9375rem;
     margin-block-end: 1.25rem;
-    padding-inline: 0;
+
+    /* Desktop: forces line break after "songs," and "device" */
+    max-inline-size: 19rem;
   }
 
   .card__plan-name,
