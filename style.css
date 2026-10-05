@@ -20,6 +20,13 @@
   --radius-card: 1.25rem;
   --radius-inner: 0.75rem;
   --radius-button: 0.75rem;
+
+  /* Fluid typography and spacing tokens using clamp() */
+  --fs-body: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+  --fs-title: clamp(1.375rem, 1.1rem + 1.2vw, 1.75rem);
+  --fs-plan: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+  --padding-content: clamp(2rem, 1.2rem + 3.5vw, 3rem)
+    clamp(1.5rem, 0.5rem + 4.2vw, 3rem);
 }
 
 /* 2. Global Resets and Base Styles */
@@ -33,7 +40,7 @@
 
 body {
   font-family: var(--ff-primary);
-  font-size: 0.9375rem;
+  font-size: var(--fs-body);
   font-weight: var(--fw-medium);
   line-height: 1.6;
   color: var(--color-gray-600);
@@ -77,7 +84,7 @@ a {
 @media (min-width: 48em) {
   .page-body {
     background-image: url("./images/pattern-background-desktop.svg");
-    background-size: 100% 50vh; /* Scales wave pattern smoothly across wide viewports */
+    background-size: 100% 50vh;
     background-position: top left;
   }
 }
@@ -91,7 +98,7 @@ a {
 /* 4. Card Component Base Layout */
 .card {
   background-color: var(--color-white);
-  max-inline-size: 28.125rem;
+  max-inline-size: min(100%, 28.125rem);
   inline-size: 100%;
   border-radius: var(--radius-card);
   overflow: hidden;
@@ -104,14 +111,8 @@ a {
 }
 
 .card__content {
-  padding: 2rem 1.5rem 2rem;
+  padding: var(--padding-content);
   text-align: center;
-}
-
-@media (min-width: 30em) {
-  .card__content {
-    padding: 2.75rem 3rem 3rem;
-  }
 }
 
 /* 5. Plan Box Component and Active Hover States */
@@ -119,17 +120,10 @@ a {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 1rem;
+  padding: clamp(1rem, 0.6rem + 1.8vw, 1.5rem);
   background-color: var(--color-blue-50);
   border-radius: var(--radius-inner);
-  margin-block-end: 1.5rem;
-}
-
-@media (min-width: 30em) {
-  .card__plan-box {
-    padding: 1.5rem;
-    margin-block-end: 2rem;
-  }
+  margin-block-end: clamp(1.5rem, 1.1rem + 1.8vw, 2rem);
 }
 
 .card__plan-icon {
@@ -142,13 +136,13 @@ a {
 }
 
 .card__plan-name {
-  font-size: 0.875rem;
+  font-size: var(--fs-plan);
   font-weight: var(--fw-black);
   color: var(--color-blue-950);
 }
 
 .card__plan-price {
-  font-size: 0.875rem;
+  font-size: var(--fs-plan);
   color: var(--color-gray-600);
 }
 
@@ -172,13 +166,7 @@ a {
 .card__actions {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-@media (min-width: 30em) {
-  .card__actions {
-    gap: 1rem;
-  }
+  gap: clamp(0.5rem, 0.1rem + 1.8vw, 1rem);
 }
 
 .btn {
@@ -187,7 +175,10 @@ a {
   border-radius: var(--radius-button);
   font-size: 0.9375rem;
   font-weight: var(--fw-black);
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
 }
 
 .btn--primary {
@@ -215,48 +206,38 @@ a {
 /* 7. Typography and Header Content */
 .card__title {
   font-weight: var(--fw-black);
-  font-size: 1.375rem;
+  font-size: var(--fs-title);
   color: var(--color-blue-950);
   margin-block-end: 1rem;
 }
 
-@media (min-width: 30em) {
-  .card__title {
-    font-size: 1.75rem;
-  }
-}
-
 .card__description {
-  font-size: 0.9375rem;
+  font-size: var(--fs-body);
   line-height: 1.6;
   color: var(--color-gray-600);
-  margin-block-end: 1.5rem;
+  margin-block-end: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
   margin-inline: auto;
 
-  /* Mobile: forces line break after "of" and "on" */
-  max-inline-size: 16rem;
+  /* Mobile line breaks naturally scale up to desktop line breaks */
+  max-inline-size: clamp(16rem, 13.5rem + 10.7vw, 19rem);
 }
 
-@media (min-width: 30em) {
-  .card__description {
-    font-size: 0.9375rem;
-    margin-block-end: 1.25rem;
-
-    /* Desktop: forces line break after "songs," and "device" */
-    max-inline-size: 19rem;
-  }
-
-  .card__plan-name,
-  .card__plan-price {
-    font-size: 1rem;
-  }
-}
-
-/* 8. Accessibility Focus Outlines */
+/* 8. Accessibility Focus Outlines & Motion Preferences */
 a:focus-visible,
 button:focus-visible {
   outline: 2px dashed var(--color-blue-700);
   outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* 9. Attribution Footer Styles */
